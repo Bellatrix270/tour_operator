@@ -1,16 +1,29 @@
 ﻿using MySqlConnector;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using tour_operator.DomainModel;
+using tour_operator.Factories;
 
 namespace tour_operator.Model
 {
-    public class ModelDB
+    public static class ModelDB
     {
-        MySqlCommand cmd = Host_DB.ConnectionDB.CreateCommand();
-        MySqlDataAdapter adapter = new MySqlDataAdapter();
+        private static MySqlCommand cmd = Host_DB.ConnectionDB.CreateCommand();
+        private static MySqlDataAdapter adapter = new MySqlDataAdapter();
+
+        public static DataTable GetDataFromTable(string tableName = null)
+        {
+            Host_DB.OpenConnection();
+
+            DataTable db = new DataTable();
+            cmd.CommandText = $"SELECT * FROM `{tableName}`";
+            adapter.SelectCommand = cmd;
+            adapter.Fill(db);
+
+            Host_DB.CloseConnection();
+
+            return db;
+        }
+
 
         /// <summary>
         /// Проверка на наличие данных в базе данных. После запроса соединение закрывается.
@@ -18,24 +31,30 @@ namespace tour_operator.Model
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns>Возвращает true, если данные содержаться в таблице, в противном случае false.</returns>
-        public bool IsExistOperator(string email, string password)
+        public static IUser GetLoginUser(TypeUsers type, string email = "", string phone = "", string password = "")
         {
             Host_DB.OpenConnection();
 
-            bool isExistOperator = false;
-
-            cmd.CommandText = "SELECT * FROM `data_tour_operators` WHERE `email` = @email AND `password_app` = @pass";
-            cmd.Parameters.AddWithValue("@email", email);
-            cmd.Parameters.AddWithValue("@pass", password);
-
-            object id = cmd.ExecuteScalar();
-
-            if (id != null)
-                isExistOperator = true;
+            UserFactory factory = GetFactory(type, email, phone, password);
+            IUser user = factory.GetUser();
 
             Host_DB.CloseConnection();
 
-            return isExistOperator;
+            return user;
+        }
+
+        private static UserFactory GetFactory(TypeUsers type, string email, string phone, string password)
+        {
+            switch (type)
+            {
+                case TypeUsers.Operator: return new OperatorFactory(email, password);
+
+                case TypeUsers.Client: return new ClientFactory(phone, password);
+
+                case TypeUsers.Guest: return new GuestFactory("Petya");
+
+                default: return null;
+            }
         }
     }
 }

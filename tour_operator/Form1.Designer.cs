@@ -35,6 +35,7 @@ namespace tour_operator
             this.textBoxOLLogin = new tour_operator.TexBoxOneLine();
             this.buttonCloseProg = new System.Windows.Forms.Button();
             this.pictureBoxHeader = new System.Windows.Forms.PictureBox();
+            this.labelClient = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHeader)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,12 +128,24 @@ namespace tour_operator
             this.pictureBoxHeader.TabStop = false;
             this.pictureBoxHeader.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             // 
+            // labelClient
+            // 
+            this.labelClient.AutoSize = true;
+            this.labelClient.ForeColor = System.Drawing.Color.White;
+            this.labelClient.Location = new System.Drawing.Point(178, 497);
+            this.labelClient.Name = "labelClient";
+            this.labelClient.Size = new System.Drawing.Size(99, 13);
+            this.labelClient.TabIndex = 7;
+            this.labelClient.Text = "Войти, как клиент";
+            this.labelClient.Click += new System.EventHandler(this.labelClient_Click);
+            // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(480, 720);
+            this.Controls.Add(this.labelClient);
             this.Controls.Add(this.yt_ButtonLogin);
             this.Controls.Add(this.textBoxOLPassword);
             this.Controls.Add(this.textBoxOLLogin);
@@ -157,6 +170,7 @@ namespace tour_operator
         private TexBoxOneLine textBoxOLLogin;
         private TexBoxOneLine textBoxOLPassword;
         private yt_Button yt_ButtonLogin;
+        private System.Windows.Forms.Label labelClient;
     }
 }
 

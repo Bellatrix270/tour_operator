@@ -121,6 +121,16 @@ namespace tour_operator.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap OperatorLogo {
+            get {
+                object obj = ResourceManager.GetObject("OperatorLogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Поиск локализованного ресурса типа System.Byte[].
         /// </summary>
         internal static byte[] Rubik_Medium {
@@ -146,6 +156,26 @@ namespace tour_operator.Properties {
         internal static System.Drawing.Bitmap UpperBar {
             get {
                 object obj = ResourceManager.GetObject("UpperBar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UpperBarBig {
+            get {
+                object obj = ResourceManager.GetObject("UpperBarBig", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap UpperBarBigRightPart {
+            get {
+                object obj = ResourceManager.GetObject("UpperBarBigRightPart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

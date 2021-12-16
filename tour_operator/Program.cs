@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using tour_operator.Presenter;
 
 namespace tour_operator
 {
@@ -17,9 +16,7 @@ namespace tour_operator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            var presenter = new PresenterLoginOperator(new FormLogin());
-            presenter.Run();
+            Application.Run(new FormLogin());
         }
     }
 }
